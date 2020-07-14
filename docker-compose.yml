@@ -1,0 +1,11 @@
+version: '3'
+services:
+  cpp:
+    build:
+      context: .
+      dockerfile: ./docker/cpp/Dockerfile
+    container_name: cpp
+    restart: always
+    tty: true
+    volumes:
+      - ./:/workspace

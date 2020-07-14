@@ -1,0 +1,16 @@
+{
+	"name": "sandbox-cpp",
+	"dockerComposeFile": [
+		"../docker-compose.yml",
+	],
+	"appPort": [
+		8080,
+	],
+	"service": "cpp",
+	"workspaceFolder": "/workspace",
+	"shutdownAction": "stopCompose",
+	"extensions": [
+		"EditorConfig.EditorConfig",
+		"ms-vscode.cpptools",
+	]
+}
