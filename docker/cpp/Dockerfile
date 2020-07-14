@@ -4,7 +4,10 @@ WORKDIR /workspace
 
 RUN apt-get -y update && apt-get install -y \
     make \
-    sudo
+    sudo \
+    tzdata
+
+ENV TZ=Asia/Tokyo
 
 COPY Makefile Makefile
 

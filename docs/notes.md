@@ -7,6 +7,9 @@
 
 通常の開発では 1, 3 のみを実行すればよい。
 
+## 参考
+* [Developing inside a Container](https://code.visualstudio.com/docs/remote/containers)
+
 # Clang-Format
 
 ```bash
@@ -17,14 +20,33 @@ clang-format --style=Google --dump-config > .clang-format
 make fmt
 ```
 
+## 参考
+* [Clang-Format Style Options](https://clang.llvm.org/docs/ClangFormat.html)
+
 # Clang
 
 ```bash
 make build
 ```
 
-# 参考
-
-* [Developing inside a Container](https://code.visualstudio.com/docs/remote/containers)
-* [Clang-Format Style Options](https://clang.llvm.org/docs/ClangFormat.html)
+## 参考
 * [Attributes in Clang](https://clang.llvm.org/docs/ClangCommandLineReference.html)
+
+# GoogleTest
+
+```bash
+make gtest
+```
+
+## 参考
+* [Build with CMake](https://github.com/google/googletest/blob/master/googletest/README.md#build-with-cmake)
+* [Google Testを導入してみた](https://qiita.com/y-vectorfield/items/6238cfd2d9c34aefe364)
+
+# GitHub Actions
+
+## 参考
+* [actions/checkout#usage](https://github.com/actions/checkout#usage)
+
+# Misc
+
+* [[Docker] build tzdata タイムゾーン選択回避方法(ubuntu)](https://sleepless-se.net/2018/07/31/docker-build-tzdata-ubuntu/)
