@@ -1,7 +1,5 @@
-MAKEFILE_DIR:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-OUTPUTS_DIR ?= $(MAKEFILE_DIR)outputs
+OUTPUTS_DIR ?= ./outputs
 CPPFILES ?= $(shell find . -name "*.cpp")
-BIN_NAME ?= sandbox-cpp
 FORMAT_STYLE ?= Google
 
 # https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -13,6 +11,8 @@ help:
 .PHONY: install
 install: ## install container
 	sudo apt-get install -y \
+		git \
+		cmake \
 		clang \
 		clang-format
 
@@ -21,15 +21,20 @@ fmt: ## format codes
 	clang-format -i $(CPPFILES) \
 		--style=$(FORMAT_STYLE)
 
-.PHONY: build
-build: ## build codes
-	clang++ $(CPPFILES) \
-		--output=$(OUTPUTS_DIR)/$(BIN_NAME)
+.PHONY: gtest
+gtest:
+	cd externals/googletest && \
+		mkdir -p build && \
+		cd build && \
+		cmake .. && \
+		make && \
+		sudo make install
 
-.PHONY: run
-run: ## run an app
-	$(OUTPUTS_DIR)/$(BIN_NAME)
-
-.PHONY: clean
-clean: ## build codes
-	rm -f $(OUTPUTS_DIR)/$(BIN_NAME)
+.PHONY: ci
+ci: fmt gtest ## run ci tests
+	# src
+	clang++ src/main.cpp --output=$(OUTPUTS_DIR)/main
+	$(OUTPUTS_DIR)/main
+	# tests
+	clang++ tests/main.cpp -pthread -lgtest_main -lgtest --output=$(OUTPUTS_DIR)/test
+	$(OUTPUTS_DIR)/test

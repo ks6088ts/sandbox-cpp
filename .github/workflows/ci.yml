@@ -11,16 +11,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          submodules: true
       - name: Install modules
         run: |
           sudo apt-get -y update
           sudo apt-get install -y make
           make install
-      - name: Build apps
+      - name: Run CI tests
         run: |
-          make clean
-          make fmt
-          make build
-      - name: Run apps
-        run: |
-          make run
+          make ci
