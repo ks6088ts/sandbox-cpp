@@ -41,6 +41,4 @@ build: ## build an app
 .PHONY: ci
 ci: fmt gtest ## run ci tests
 	make build DIR=src BIN=hello_cmake
-	# tests
-	clang++ tests/main.cpp -pthread -lgtest_main -lgtest --output=outputs/test
-	outputs/test
+	make build DIR=tests BIN=test_hello_cmake
