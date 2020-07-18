@@ -50,3 +50,20 @@ make gtest
 # Misc
 
 * [[Docker] build tzdata タイムゾーン選択回避方法(ubuntu)](https://sleepless-se.net/2018/07/31/docker-build-tzdata-ubuntu/)
+
+# CMake
+```bash
+cd src
+mkdir -p build
+cd build
+cmake ..
+make
+./hello_cmake
+```
+## 参考
+* [CMake](https://cmake.org/download/)
+* [ttroy50/cmake-examples](https://github.com/ttroy50/cmake-examples) を参考に実行しながら学ぶ
+* [CMakeで外部ライブラリとリンクさせたりするのどうすんのという話。](https://blog.neno.dev/entry/2018/06/12/so-using-cmake/)
+* VSCode Extension:
+  * [CMake langage support for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=twxs.cmake)
+  * [Extended CMake support in Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)

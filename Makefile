@@ -1,4 +1,3 @@
-OUTPUTS_DIR ?= ./outputs
 CPPFILES ?= $(shell find . -name "*.cpp")
 FORMAT_STYLE ?= Google
 
@@ -30,11 +29,16 @@ gtest:
 		make && \
 		sudo make install
 
+.PHONY: build
+build: ## build an app
+	cd $(DIR) && \
+	mkdir -p build && \
+	cd build && \
+	cmake .. && \
+	make && \
+	./$(BIN)
+
 .PHONY: ci
 ci: fmt gtest ## run ci tests
-	# src
-	clang++ src/main.cpp --output=$(OUTPUTS_DIR)/main
-	$(OUTPUTS_DIR)/main
-	# tests
-	clang++ tests/main.cpp -pthread -lgtest_main -lgtest --output=$(OUTPUTS_DIR)/test
-	$(OUTPUTS_DIR)/test
+	make build DIR=src BIN=hello_cmake
+	make build DIR=tests BIN=test_hello_cmake
