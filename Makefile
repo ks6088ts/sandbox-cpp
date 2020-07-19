@@ -35,10 +35,10 @@ build: ## build an app
 	mkdir -p build && \
 	cd build && \
 	cmake .. && \
-	make && \
-	./$(BIN)
+	make
 
 .PHONY: ci
-ci: fmt gtest ## run ci tests
-	make build DIR=src BIN=hello_cmake
-	make build DIR=tests BIN=test_hello_cmake
+ci: gtest ## run ci tests
+	make build DIR=.
+	./build/src/hello_world/hello_world 
+	./build/tests/hello_gtest/hello_gtest
