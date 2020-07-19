@@ -22,6 +22,7 @@ make fmt
 
 ## 参考
 * [Clang-Format Style Options](https://clang.llvm.org/docs/ClangFormat.html)
+* [How to exclude a directory in find . command](https://stackoverflow.com/a/4210072)
 
 # Clang
 

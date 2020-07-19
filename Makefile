@@ -1,5 +1,4 @@
-CPPFILES ?= $(shell find . -name "*.cpp")
-FORMAT_STYLE ?= Google
+CPPFILES ?= $(shell find . -type d \( -path ./externals -o -path ./build \) -prune -false -o -name "*.cpp")
 
 # https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 .PHONY: help
@@ -17,8 +16,7 @@ install: ## install container
 
 .PHONY: fmt
 fmt: ## format codes
-	clang-format -i $(CPPFILES) \
-		--style=$(FORMAT_STYLE)
+	clang-format -i -style=file $(CPPFILES)
 
 .PHONY: gtest
 gtest:
@@ -30,15 +28,16 @@ gtest:
 		sudo make install
 
 .PHONY: build
-build: ## build an app
-	cd $(DIR) && \
+build: ## build all the codes
 	mkdir -p build && \
 	cd build && \
 	cmake .. && \
 	make
 
-.PHONY: ci
-ci: gtest ## run ci tests
-	make build DIR=.
+.PHONY: run
+run: ## run all the codes
 	./build/src/hello_world/hello_world 
 	./build/tests/hello_gtest/hello_gtest
+
+.PHONY: ci
+ci: gtest fmt build run ## run ci tests
