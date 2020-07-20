@@ -4,6 +4,9 @@ services:
     build:
       context: .
       dockerfile: ./docker/cpp/Dockerfile
+      args:
+        - http_proxy=${HTTP_PROXY}
+        - https_proxy=${HTTPS_PROXY}
     container_name: cpp
     restart: always
     tty: true

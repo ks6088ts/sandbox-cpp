@@ -34,3 +34,4 @@
 # Project
 outputs
 build
+.env

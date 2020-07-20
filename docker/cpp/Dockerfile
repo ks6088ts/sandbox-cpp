@@ -2,6 +2,9 @@ FROM ubuntu:20.10
 
 WORKDIR /workspace
 
+ARG http_proxy=""
+ARG https_proxy=""
+
 RUN apt-get -y update && apt-get install -y \
     make \
     sudo \
