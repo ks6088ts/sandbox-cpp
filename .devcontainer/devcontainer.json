@@ -9,6 +9,9 @@
 	"service": "cpp",
 	"workspaceFolder": "/workspace",
 	"shutdownAction": "stopCompose",
+	"settings": {
+		"editor.formatOnSave": true,
+	},
 	"extensions": [
 		"EditorConfig.EditorConfig",
 		"ms-vscode.cpptools",
